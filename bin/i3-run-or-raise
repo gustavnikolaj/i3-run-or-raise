@@ -2,6 +2,7 @@
 
 var filter = require('../lib/filter');
 var getWindows = require('../lib/getWindows');
+var findWindowIdsByClass = require('../lib/findWindowIdsByClass');
 
 var argv = require('optimist').alias('c', 'class')
                               .alias('n', 'name')
@@ -12,10 +13,18 @@ getWindows(function (windows) {
         windows = filter.byName(windows, argv.n);
     }
     if (argv.c) {
-        console.log('Find window that matches class: ', argv.c);
+        findWindowIdsByClass(argv.c, function (windowIds) {
+            windows = filter.byWindowId(windows, windowIds);
+            runOrRaise(windows);
+        })
+    } else {
+        runOrRaise(windows);
     }
 });
 
+function runOrRaise(windows) {
+    console.log(windows);
     if (argv._) {
         console.log('If no match is found, exec: ', argv._);
     }
+}
