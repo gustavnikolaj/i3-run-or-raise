@@ -34,4 +34,28 @@ describe('filter', function () {
             expect(filter.byName(inputData, 'ba(z|r)').length, 'to be', 2);
         });
     });
+    describe('by window id', function () {
+        it('should filter a list of objects by window id', function () {
+            var inputData = [
+                {window: '123'},
+                {window: '231'},
+                {window: '321'}
+            ];
+
+            expect(filter.byWindowId(inputData, '333').length, 'to be', 0);
+            expect(filter.byWindowId(inputData, '123').length, 'to be', 1);
+        });
+        it('should filter a list of objects by a list of window ids', function () {
+            var inputData = [
+                {window: '123'},
+                {window: '231'},
+                {window: '321'}
+            ];
+
+            expect(filter.byWindowId(inputData, ['333']).length, 'to be', 0);
+            expect(filter.byWindowId(inputData, ['123']).length, 'to be', 1);
+            expect(filter.byWindowId(inputData, ['123', '231']).length, 'to be', 2);
+            expect(filter.byWindowId(inputData, ['123', '231', '333']).length, 'to be', 2);
+        });
+    });
 });

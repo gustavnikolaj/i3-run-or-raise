@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "description": "run or raise script for the i3 window manager",
   "dependencies": {
+    "lodash": "=2.4.1",
     "unexpected": "=3.0.1",
     "mocha": "=1.18.2"
   }
