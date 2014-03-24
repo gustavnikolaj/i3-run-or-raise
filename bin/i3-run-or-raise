@@ -3,6 +3,20 @@
 var filter = require('../lib/filter');
 var getWindows = require('../lib/getWindows');
 
+var argv = require('optimist').alias('c', 'class')
+                              .alias('n', 'name')
+                              .argv;
+
 getWindows(function (windows) {
-    console.log(filter.byName(windows, 'Terminal'));
+    if (argv.n) {
+        windows = filter.byName(windows, argv.n);
+    }
+    if (argv.c) {
+        console.log('Find window that matches class: ', argv.c);
+    }
+
+
+    if (argv._) {
+        console.log('If no match is found, exec: ', argv._);
+    }
 });

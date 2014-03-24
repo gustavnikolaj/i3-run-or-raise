@@ -5,6 +5,7 @@
   "dependencies": {
     "lodash": "=2.4.1",
     "unexpected": "=3.0.1",
-    "mocha": "=1.18.2"
+    "mocha": "=1.18.2",
+    "optimist": "=0.6.1"
   }
 }
