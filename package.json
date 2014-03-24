@@ -1,5 +1,9 @@
 {
   "name": "i3-run-or-raise",
   "version": "0.0.0",
-  "description": "run or raise script for the i3 window manager"
+  "description": "run or raise script for the i3 window manager",
+  "dependencies": {
+    "unexpected": "=3.0.1",
+    "mocha": "=1.18.2"
+  }
 }
