@@ -57,5 +57,15 @@ describe('filter', function () {
             expect(filter.byWindowId(inputData, ['123', '231']).length, 'to be', 2);
             expect(filter.byWindowId(inputData, ['123', '231', '333']).length, 'to be', 2);
         });
+        it('should handle stringified window ids', function () {
+            var inputData = [
+                {window: 123},
+                {window: 231},
+                {window: 321}
+            ];
+
+            expect(filter.byWindowId(inputData, '123').length, 'to be', 1);
+            expect(filter.byWindowId(inputData, ['123']).length, 'to be', 1);
+        });
     });
 });

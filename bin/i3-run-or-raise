@@ -14,9 +14,8 @@ getWindows(function (windows) {
     if (argv.c) {
         console.log('Find window that matches class: ', argv.c);
     }
-
+});
 
     if (argv._) {
         console.log('If no match is found, exec: ', argv._);
     }
-});
