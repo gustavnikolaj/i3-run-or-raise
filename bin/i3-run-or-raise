@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
-var filterByName = require('../lib/filterByName');
+var filter = require('../lib/filter');
 var getWindows = require('../lib/getWindows');
 
 getWindows(function (windows) {
-    console.log(filterByName(windows, 'Terminal'));
+    console.log(filter.byName(windows, 'Terminal'));
 });
