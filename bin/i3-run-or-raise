@@ -27,13 +27,23 @@ getWindows(function (windows) {
 function runOrRaise(windows) {
     if (windows.length) {
         // find next unfocused in the matching set.
-        var focused = _.find(function (item) {
+        var focused = _.find(windows, function (item) {
             return item.focused;
         });
         var indexOfFocused = windows.indexOf(focused);
-        var indexOfNext = (windows.length -1 === indexOfFocused) ? 0 : indexOfFocused + 1;
+        var indexOfNext;
 
-        exec('/usr/bin/i3-msg [id=' + windows[indexOfNext].window + '] focus');
+        if (indexOfFocused !== -1) {
+            if (windows.length === 1) {
+                indexOfNext = 0;
+            } else {
+                indexOfNext = (indexOfFocused === windows.length - 1) ? 0 : indexOfFocused + 1;
+            }
+        } else {
+            indexOfNext = 0;
+        }
+
+        exec('/usr/bin/i3-msg [con_id=' + windows[indexOfNext].id + '] focus');
     } else {
         if (argv._) {
             exec('/usr/bin/i3-msg exec --no-startup-id ' + argv._.join(' '));
