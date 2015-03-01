@@ -36,13 +36,6 @@ describe('getWindows', function () {
                     className: 'Gnome-terminal'
                 },
                 {
-                    name: 'i3bar for output HDMI-0',
-                    id: 16669136,
-                    focused: false,
-                    window: 25165831,
-                    className: 'i3bar'
-                },
-                {
                     name: 'some webpage - Google Chrome',
                     id: 16658352,
                     focused: false,
@@ -55,13 +48,6 @@ describe('getWindows', function () {
                     focused: false,
                     window: 44040267,
                     className: 'Emacs24'
-                },
-                {
-                    name: 'i3bar for output DVI-I-1',
-                    id: 16670992,
-                    focused: false,
-                    window: 25165835,
-                    className: 'i3bar'
                 }
             ]);
             done();
