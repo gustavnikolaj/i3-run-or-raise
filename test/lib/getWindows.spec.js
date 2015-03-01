@@ -2,30 +2,21 @@
 
 var expect = require('unexpected');
 var sampleTree = JSON.parse(require('fs').readFileSync(require('path').resolve(__dirname, '../sampleData/twin_screen_tree.json')));
-var getWindows = require('../../lib/getWindows');
+var getWindowsPath = '../../lib/getWindows';
 
-var i3msgReplacement = {
-    getTree: function (cb) {
-        cb(sampleTree);
+var mocks = {
+    './i3msg': {
+        getTree: function (cb) {
+            cb(sampleTree);
+        }
     }
 };
 
-describe('getWindows', function () {
-    it('should take a second argument to dependency overwrite.', function (done) {
-        var isCalled = false,
-            dependencyOverwrite = {
-                getTree: function (callback) {
-                    isCalled = true;
-                    callback();
-                }
-            };
+var proxyquire = require('proxyquire').noCallThru().noPreserveCache();
 
-        getWindows(function () {
-            expect(isCalled, 'to be ok');
-            done();
-        }, dependencyOverwrite);
-    });
+describe('getWindows', function () {
     it('should return a list of windows when given a i3 tree', function (done) {
+        var getWindows = proxyquire(getWindowsPath, mocks);
         getWindows(function (windows) {
             expect(windows, 'to satisfy', [
                 {
@@ -51,6 +42,6 @@ describe('getWindows', function () {
                 }
             ]);
             done();
-        }, i3msgReplacement);
+        });
     });
 });

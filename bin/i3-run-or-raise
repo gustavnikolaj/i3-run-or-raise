@@ -2,19 +2,26 @@
 
 var _ = require('lodash');
 var exec = require('child_process').exec;
-var filter = require('../lib/filter');
 
 var argv = require('optimist').alias('c', 'class')
                               .alias('n', 'name')
                               .argv;
 
 require('../lib/getWindows')(function (windows) {
+    console.log(windows);
     if (argv.n) {
-        windows = filter.byName(windows, argv.n);
+        var regex = new RegExp(argv.n);
+        windows = windows.filter(function (item) {
+            return item.name.match(regex);
+        });
     }
+    console.log(windows);
     if (argv.c) {
-        windows = filter.byClass(windows, argv.c);
+        windows = windows.filter(function (window) {
+            return window.className === argv.c;
+        });
     }
+    console.log(windows);
     if (windows.length) {
         // find next unfocused in the matching set.
         var focused = _.find(windows, function (item) {
