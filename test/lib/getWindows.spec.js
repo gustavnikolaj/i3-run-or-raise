@@ -26,31 +26,29 @@ describe('getWindows', function () {
         }, dependencyOverwrite);
     });
     it('should return a list of windows when given a i3 tree', function (done) {
-        var expectedWindows = [
-            {
-                "focused": false,
-                "name": "emacs@workstation",
-                "window": 31457443
-            },
-            {
-                "focused": true,
-                "name": "Terminal",
-                "window": 29360269
-            },
-            {
-                "focused": false,
-                "name": "JSONLint - The JSON Validator - Google Chrome",
-                "window": 35651585
-            },
-            {
-                "focused": false,
-                "name": "i3bar for output DVI-I-1",
-                "window": 25165831
-            }
-        ];
-
         getWindows(function (windows) {
-            expect(windows, 'to equal', expectedWindows);
+            expect(windows, 'to satisfy', [
+                {
+                    "focused": false,
+                    "name": "emacs@workstation",
+                    "window": 31457443
+                },
+                {
+                    "focused": true,
+                    "name": "Terminal",
+                    "window": 29360269
+                },
+                {
+                    "focused": false,
+                    "name": "JSONLint - The JSON Validator - Google Chrome",
+                    "window": 35651585
+                },
+                {
+                    "focused": false,
+                    "name": "i3bar for output DVI-I-1",
+                    "window": 25165831
+                }
+            ]);
             done();
         }, i3msgReplacement);
     });

@@ -1,11 +1,19 @@
 {
   "name": "i3-run-or-raise",
   "version": "0.0.0",
+  "scripts": {
+    "test": "mocha"
+  },
+  "directories": {
+    "bin": "bin"
+  },
   "description": "run or raise script for the i3 window manager",
   "dependencies": {
     "lodash": "=2.4.1",
-    "unexpected": "=3.0.1",
-    "mocha": "=1.18.2",
     "optimist": "=0.6.1"
+  },
+  "devDependencies": {
+    "mocha": "2.1.0",
+    "unexpected": "5.10.0"
   }
 }
