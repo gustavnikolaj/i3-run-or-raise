@@ -1,7 +1,7 @@
 /*global describe, it*/
 
 var expect = require('unexpected');
-var sampleTree = require('../sampleData/single_screen_tree.js');
+var sampleTree = JSON.parse(require('fs').readFileSync(require('path').resolve(__dirname, '../sampleData/twin_screen_tree.json')));
 var getWindows = require('../../lib/getWindows');
 
 var i3msgReplacement = {
@@ -29,24 +29,39 @@ describe('getWindows', function () {
         getWindows(function (windows) {
             expect(windows, 'to satisfy', [
                 {
-                    "focused": false,
-                    "name": "emacs@workstation",
-                    "window": 31457443
+                    name: 'Terminal',
+                    id: 16741328,
+                    focused: true,
+                    window: 41943046,
+                    className: 'Gnome-terminal'
                 },
                 {
-                    "focused": true,
-                    "name": "Terminal",
-                    "window": 29360269
+                    name: 'i3bar for output HDMI-0',
+                    id: 16669136,
+                    focused: false,
+                    window: 25165831,
+                    className: 'i3bar'
                 },
                 {
-                    "focused": false,
-                    "name": "JSONLint - The JSON Validator - Google Chrome",
-                    "window": 35651585
+                    name: 'some webpage - Google Chrome',
+                    id: 16658352,
+                    focused: false,
+                    window: 35651585,
+                    className: 'Google-chrome'
                 },
                 {
-                    "focused": false,
-                    "name": "i3bar for output DVI-I-1",
-                    "window": 25165831
+                    name: 'emacs@workstation',
+                    id: 16557296,
+                    focused: false,
+                    window: 44040267,
+                    className: 'Emacs24'
+                },
+                {
+                    name: 'i3bar for output DVI-I-1',
+                    id: 16670992,
+                    focused: false,
+                    window: 25165835,
+                    className: 'i3bar'
                 }
             ]);
             done();
