@@ -5,6 +5,7 @@ var exec = require('child_process').exec;
 
 var argv = require('optimist').alias('c', 'class')
                               .alias('n', 'name')
+                              .alias('w', 'workspace')
                               .argv;
 
 require('../lib/getWindows')(function (windows) {
@@ -43,7 +44,9 @@ require('../lib/getWindows')(function (windows) {
         exec('/usr/bin/i3-msg [con_id=' + windows[indexOfNext].id + '] focus');
     } else {
         if (argv._) {
-            exec('/usr/bin/i3-msg exec --no-startup-id ' + argv._.join(' '));
+            var ws = '';
+            if (argv.w) { ws = 'workspace ' + argv.w + '; ' }
+            exec("/usr/bin/i3-msg '" + ws + 'exec --no-startup-id ' + argv._.join(' ') + "'");
         }
     }
 });
