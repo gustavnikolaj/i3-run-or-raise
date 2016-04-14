@@ -1,6 +1,6 @@
 {
   "name": "i3-run-or-raise",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "scripts": {
     "test": "mocha"
   },
