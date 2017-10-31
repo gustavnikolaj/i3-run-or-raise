@@ -7,4 +7,4 @@ var argv = require('optimist')
     .alias('w', 'workspace')
     .argv;
 
-require('../lib/cli')(argv, new Client('/usr/bin/i3-msg'));
+require('../lib/cli')(argv, new Client('/usr/bin/swaymsg'));
