@@ -2,6 +2,9 @@
 
 Run or raise implementation for i3, in node.js.
 
+Sway is also supported, through the alternative binary named
+`sway-run-or-raise`.
+
 ## Usage
 
 You can use it from the commandline as well as from your configuration
